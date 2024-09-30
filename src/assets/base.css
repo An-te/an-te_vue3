@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
+
+:root {
+	--bg-color: #e9e9e9;
+	--tx-color: #252323;
+	--ac-color: brown;
+	--bd-color: #1b1a1a;
+}
+
+body {
+	padding: 20px;
+	font-family: "Nova Mono", monospace;
+	font-weight: 600;
+	font-style: normal;
+	background-color: var(--bg-color);
+	color: var(--tx-color);
+}
+p {
+	font-size: 1rem;
+}
+a {
+	font-size: 0.7rem;
+}
+.p5Canvas {
+	cursor: pointer;
+}
+.anim {
+	animation: anim 3s forwards;
+}
+@keyframes anim {
+	from {
+		filter: blur(10px);
+	}
+}
+
+@media (width <= 768px) {
+	body {
+		padding: 4%;
+	}
+	.p5Canvas {
+		zoom: 0.5;
+	}
+	.detail {
+		width: 250px;
+	}
+}
+
+.parent {
+	--x-grad: repeating-linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 1),
+		rgba(0, 0, 0, 1) 10px,
+		transparent 0,
+		transparent calc(100% - 10px)
+	);
+	--y-grad: repeating-linear-gradient(
+		rgba(0, 0, 0, 1),
+		rgba(0, 0, 0, 1) 4px,
+		transparent 0,
+		transparent calc(100% - 4px)
+	);
+	background-image: var(--x-grad), var(--y-grad), var(--x-grad), var(--y-grad);
+	background-repeat: no-repeat;
+	background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+	background-position: top, right, bottom, left;
+}
+.child {
+	position: relative;
+	&::before,
+	&::after {
+		content: "";
+		width: 24px;
+		height: 250px;
+		position: absolute;
+	}
+	&::before {
+		border-left: double 4px var(--bd-color);
+		border-top: dotted 2px var(--bd-color);
+		top: 0;
+		left: 0;
+	}
+	&::after {
+		border-right: double 4px var(--bd-color);
+		border-bottom: dotted 2px var(--bd-color);
+		bottom: 0;
+		right: 0;
+	}
+}
